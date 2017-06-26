@@ -8,37 +8,31 @@
     <!--<DisplayString Condition="m_type == 1">Object {(*m_value.object).size()}</DisplayString>-->
     <DisplayString Condition="m_type == 1">Object</DisplayString>
     <!-- Array -->
-    <!--<DisplayString Condition="m_type == 2">Array {m_value.array.size}</DisplayString>-->
+    <DisplayString Condition="m_type == 2">Array</DisplayString>
     <!-- String -->
-    <DisplayString Condition="m_type == 3">{m_type, s8}</DisplayString>
+    <DisplayString Condition="m_type == 3">{m_value.string}</DisplayString>
     <!-- Boolean -->
-    <DisplayString Condition="m_type == 4">{m_type}</DisplayString>
+    <DisplayString Condition="m_type == 4">{m_value.boolean}</DisplayString>
     <!-- Integer -->
-    <DisplayString Condition="m_type == 5">{m_type}</DisplayString>
+    <DisplayString Condition="m_type == 5">{m_value.number_integer}</DisplayString>
     <!-- Unsigned -->
-    <DisplayString Condition="m_type == 6">{m_type}</DisplayString>
+    <DisplayString Condition="m_type == 6">{m_value.number_unsigned}</DisplayString>
     <!-- Float -->
-    <DisplayString Condition="m_type == 7">{m_type}</DisplayString>
+    <DisplayString Condition="m_type == 7">{m_value.number_float}</DisplayString>
     <!-- Discarded -->
     <DisplayString Condition="m_type == 8">Discarded</DisplayString>
     <!-- Uninitialised -->
     <DisplayString Condition="m_type > 8">Uninitialised</DisplayString>
     <Expand>
       <ExpandedItem Condition="m_type == 1">*(m_value.object)</ExpandedItem>
-      <!--<ExpandedItem Condition="m_type == 1">*(m_value.object)</ExpandedItem>-->
-      <!--<ExpandedItem Condition="type_ == 7">*(value_.map_)</ExpandedItem>-->
+      <ExpandedItem Condition="m_type == 2">*(m_value.array)</ExpandedItem>
     </Expand>
 	</Type>
 
-  <!-- Object key value pair -->
-  <!--<Type Name="std::pair&lt;*,nlohmann::basic_json&lt;*">-->
-  
-  <!--<Type Name="std::map&lt;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt;,nlohmann::basic_json&lt;std::map,std::vector,std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt;,bool,__int64,unsigned __int64,double,std::allocator,nlohmann::adl_serializer&gt;,std::less&lt;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt; &gt;,std::allocator&lt;std::pair&lt;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt; const ,nlohmann::basic_json&lt;std::map,std::vector,std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt;,bool,__int64,unsigned __int64,double,std::allocator,nlohmann::adl_serializer&gt; &gt; &gt; &gt;">-->
-  <Type Name="std::map&lt;*,nlohmann::basic_json&lt;*&gt;,*&gt;">    
+  <!-- Object key value pair -->  
+  <Type Name="std::map&lt;*,nlohmann::basic_json&lt;*&gt;,*&gt;">
   <DisplayString>{{ size={_Mypair._Myval2._Myval2._Mysize} }}</DisplayString>
     <Expand>
-      <!--<Item Name="[comparator]" ExcludeView="simple">_Mypair</Item>-->
-      <!--<Item Name="[allocator]" ExcludeView="simple">_Mypair._Myval2</Item>-->
       <TreeItems>
         <Size>_Mypair._Myval2._Myval2._Mysize</Size>
         <HeadPointer>_Mypair._Myval2._Myval2._Myhead-&gt;_Parent</HeadPointer>
@@ -48,5 +42,13 @@
       </TreeItems>
     </Expand>
   </Type>
-  
+
+  <!--<Type Name="std::pair&lt;*,nlohmann::basic_json&lt;*&gt;&gt;">-->
+  <Type Name="std::pair&lt;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt; const ,nlohmann::basic_json&lt;std::map,std::vector,std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt;,bool,__int64,unsigned __int64,double,std::allocator,nlohmann::adl_serializer&gt; &gt;">
+    <DisplayString>test {second}</DisplayString>
+    <Expand>
+      <ExpandedItem>second</ExpandedItem>      
+    </Expand>
+  </Type>
+
 </AutoVisualizer>
