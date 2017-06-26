@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
-	<!-- support for nlohmann modern cpp json libary-->
-	<Type Name="nlohmann::basic_json&lt;*,*&gt;">
+  <!-- support for nlohmann modern cpp json libary-->
+  <Type Name="nlohmann::basic_json&lt;*,*&gt;">
     <!-- null -->
     <DisplayString Condition="m_type == 0">Null</DisplayString>
     <!-- Object -->
@@ -27,11 +27,11 @@
       <ExpandedItem Condition="m_type == 1">*(m_value.object)</ExpandedItem>
       <ExpandedItem Condition="m_type == 2">*(m_value.array)</ExpandedItem>
     </Expand>
-	</Type>
+  </Type>
 
   <!-- Object -->
   <Type Name="std::map&lt;*,nlohmann::basic_json&lt;*&gt;,*&gt;">
-  <DisplayString>{{ size={_Mypair._Myval2._Myval2._Mysize} }}</DisplayString>
+    <DisplayString>{{ size={_Mypair._Myval2._Myval2._Mysize} }}</DisplayString>
     <Expand>
       <TreeItems>
         <Size>_Mypair._Myval2._Myval2._Mysize</Size>
@@ -55,11 +55,11 @@
     </Expand>
   </Type>
 
-  <!-- Object key value pair -->  
-  <Type Name="std::pair&lt;*,nlohmann::basic_json&lt;*&gt;&gt;">  
+  <!-- Object key value pair -->
+  <Type Name="std::pair&lt;*,nlohmann::basic_json&lt;*&gt;&gt;">
     <DisplayString>{second}</DisplayString>
     <Expand>
-      <ExpandedItem>second</ExpandedItem>      
+      <ExpandedItem>second</ExpandedItem>
     </Expand>
   </Type>
 </AutoVisualizer>
