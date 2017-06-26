@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
-	<!-- rapidjson::GenericValue - basic support -->
+	<!-- support for nlohmann modern cpp json libary-->
 	<Type Name="nlohmann::basic_json&lt;*,*&gt;">
     <!-- null -->
     <DisplayString Condition="m_type == 0">Null</DisplayString>
     <!-- Object -->
-    <!--<DisplayString Condition="m_type == 1">Object {(*m_value.object).size()}</DisplayString>-->
     <DisplayString Condition="m_type == 1">Object</DisplayString>
     <!-- Array -->
     <DisplayString Condition="m_type == 2">Array</DisplayString>
@@ -23,13 +22,14 @@
     <DisplayString Condition="m_type == 8">Discarded</DisplayString>
     <!-- Uninitialised -->
     <DisplayString Condition="m_type > 8">Uninitialised</DisplayString>
+    <!-- Display Objects and Arrays as children -->
     <Expand>
       <ExpandedItem Condition="m_type == 1">*(m_value.object)</ExpandedItem>
       <ExpandedItem Condition="m_type == 2">*(m_value.array)</ExpandedItem>
     </Expand>
 	</Type>
 
-  <!-- Object key value pair -->  
+  <!-- Object -->
   <Type Name="std::map&lt;*,nlohmann::basic_json&lt;*&gt;,*&gt;">
   <DisplayString>{{ size={_Mypair._Myval2._Myval2._Mysize} }}</DisplayString>
     <Expand>
@@ -38,17 +38,28 @@
         <HeadPointer>_Mypair._Myval2._Myval2._Myhead-&gt;_Parent</HeadPointer>
         <LeftPointer>_Left</LeftPointer>
         <RightPointer>_Right</RightPointer>
-        <ValueNode Condition="_Isnil == 0" Name="{_Myval.first}">_Myval,view(MapHelper)</ValueNode>
+        <ValueNode Condition="_Isnil == 0" Name="{_Myval.first}">_Myval</ValueNode>
       </TreeItems>
     </Expand>
   </Type>
 
-  <!--<Type Name="std::pair&lt;*,nlohmann::basic_json&lt;*&gt;&gt;">-->
-  <Type Name="std::pair&lt;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt; const ,nlohmann::basic_json&lt;std::map,std::vector,std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt;,bool,__int64,unsigned __int64,double,std::allocator,nlohmann::adl_serializer&gt; &gt;">
-    <DisplayString>test {second}</DisplayString>
+  <!-- Array -->
+  <Type Name="std::vector&lt;nlohmann::basic_json&lt;*&gt;,*&gt;">
+    <Intrinsic Name="size" Expression="_Mypair._Myval2._Mylast - _Mypair._Myval2._Myfirst" />
+    <DisplayString>{{ size={size()} }}</DisplayString>
+    <Expand>
+      <ArrayItems>
+        <Size>size()</Size>
+        <ValuePointer>_Mypair._Myval2._Myfirst</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+
+  <!-- Object key value pair -->  
+  <Type Name="std::pair&lt;*,nlohmann::basic_json&lt;*&gt;&gt;">  
+    <DisplayString>{second}</DisplayString>
     <Expand>
       <ExpandedItem>second</ExpandedItem>      
     </Expand>
   </Type>
-
 </AutoVisualizer>
