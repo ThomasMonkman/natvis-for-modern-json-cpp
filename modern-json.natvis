@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+	<!-- rapidjson::GenericValue - basic support -->
+	<Type Name="nlohmann::basic_json&lt;*,*&gt;">
+    <!-- null -->
+    <DisplayString Condition="m_type == 0">Null</DisplayString>
+    <!-- Object -->
+    <!--<DisplayString Condition="m_type == 1">Object {(*m_value.object).size()}</DisplayString>-->
+    <DisplayString Condition="m_type == 1">Object</DisplayString>
+    <!-- Array -->
+    <!--<DisplayString Condition="m_type == 2">Array {m_value.array.size}</DisplayString>-->
+    <!-- String -->
+    <DisplayString Condition="m_type == 3">{m_type, s8}</DisplayString>
+    <!-- Boolean -->
+    <DisplayString Condition="m_type == 4">{m_type}</DisplayString>
+    <!-- Integer -->
+    <DisplayString Condition="m_type == 5">{m_type}</DisplayString>
+    <!-- Unsigned -->
+    <DisplayString Condition="m_type == 6">{m_type}</DisplayString>
+    <!-- Float -->
+    <DisplayString Condition="m_type == 7">{m_type}</DisplayString>
+    <!-- Discarded -->
+    <DisplayString Condition="m_type == 8">Discarded</DisplayString>
+    <!-- Uninitialised -->
+    <DisplayString Condition="m_type > 8">Uninitialised</DisplayString>
+    <Expand>
+      <ExpandedItem Condition="m_type == 1">*(m_value.object)</ExpandedItem>
+      <!--<ExpandedItem Condition="m_type == 1">*(m_value.object)</ExpandedItem>-->
+      <!--<ExpandedItem Condition="type_ == 7">*(value_.map_)</ExpandedItem>-->
+    </Expand>
+	</Type>
+
+  <!-- Object key value pair -->
+  <!--<Type Name="std::pair&lt;*,nlohmann::basic_json&lt;*">-->
+  
+  <!--<Type Name="std::map&lt;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt;,nlohmann::basic_json&lt;std::map,std::vector,std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt;,bool,__int64,unsigned __int64,double,std::allocator,nlohmann::adl_serializer&gt;,std::less&lt;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt; &gt;,std::allocator&lt;std::pair&lt;std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt; const ,nlohmann::basic_json&lt;std::map,std::vector,std::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt; &gt;,bool,__int64,unsigned __int64,double,std::allocator,nlohmann::adl_serializer&gt; &gt; &gt; &gt;">-->
+  <Type Name="std::map&lt;*,nlohmann::basic_json&lt;*&gt;,*&gt;">    
+  <DisplayString>{{ size={_Mypair._Myval2._Myval2._Mysize} }}</DisplayString>
+    <Expand>
+      <!--<Item Name="[comparator]" ExcludeView="simple">_Mypair</Item>-->
+      <!--<Item Name="[allocator]" ExcludeView="simple">_Mypair._Myval2</Item>-->
+      <TreeItems>
+        <Size>_Mypair._Myval2._Myval2._Mysize</Size>
+        <HeadPointer>_Mypair._Myval2._Myval2._Myhead-&gt;_Parent</HeadPointer>
+        <LeftPointer>_Left</LeftPointer>
+        <RightPointer>_Right</RightPointer>
+        <ValueNode Condition="_Isnil == 0" Name="{_Myval.first}">_Myval,view(MapHelper)</ValueNode>
+      </TreeItems>
+    </Expand>
+  </Type>
+  
+</AutoVisualizer>
