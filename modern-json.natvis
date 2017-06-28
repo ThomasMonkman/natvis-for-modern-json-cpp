@@ -30,6 +30,20 @@
   </Type>
 
   <!-- Object -->
+  <!-- VC 2013 -->
+  <Type Name="std::map&lt;*,nlohmann::basic_json&lt;*&gt;,*&gt;" Priority="MediumLow">
+      <DisplayString>{{ size={_Mysize} }}</DisplayString>
+      <Expand>
+          <TreeItems>
+              <Size>_Mysize</Size>
+              <HeadPointer>_Myhead-&gt;_Parent</HeadPointer>
+              <LeftPointer>_Left</LeftPointer>
+              <RightPointer>_Right</RightPointer>
+              <ValueNode Condition="_Isnil == 0">_Myval</ValueNode>
+          </TreeItems>
+      </Expand>
+  </Type>
+  <!-- VS 2015+ -->
   <Type Name="std::map&lt;*,nlohmann::basic_json&lt;*&gt;,*&gt;">
     <DisplayString>{{ size={_Mypair._Myval2._Myval2._Mysize} }}</DisplayString>
     <Expand>
@@ -44,6 +58,17 @@
   </Type>
 
   <!-- Array -->
+  <!-- VC 2013 -->
+  <Type Name="std::vector&lt;*&gt;" Priority="MediumLow">
+      <DisplayString>{{ size={_Mylast - _Myfirst} }}</DisplayString>
+      <Expand>
+          <ArrayItems>
+              <Size>_Mylast - _Myfirst</Size>
+              <ValuePointer>_Myfirst</ValuePointer>
+          </ArrayItems>
+      </Expand>
+  </Type>
+  <!-- VS 2015+ -->
   <Type Name="std::vector&lt;nlohmann::basic_json&lt;*&gt;,*&gt;">
     <Intrinsic Name="size" Expression="_Mypair._Myval2._Mylast - _Mypair._Myval2._Myfirst" />
     <DisplayString>{{ size={size()} }}</DisplayString>
