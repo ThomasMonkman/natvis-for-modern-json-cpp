@@ -3,7 +3,7 @@ Visual studio natvis for JSON for Modern C++ ([nlohmann/json](https://github.com
 
 Should work on vs 2013+
 
-Example:  
+### Example  
 ```c++
 nlohmann::json json = {
   {"pi", 3.141},
@@ -20,5 +20,5 @@ nlohmann::json json = {
   }}
 };
 ```
-Becomes  
+Is visualised as    
 ![](https://github.com/ThomasMonkman/natvis-for-modern-json-cpp/blob/master/json_with_natvis.png)
