@@ -9,7 +9,7 @@
     <!-- Array -->
     <DisplayString Condition="m_type == 2">Array</DisplayString>
     <!-- String -->
-    <DisplayString Condition="m_type == 3">{m_value.string}</DisplayString>
+    <DisplayString Condition="m_type == 3">{*m_value.string}</DisplayString>
     <!-- Boolean -->
     <DisplayString Condition="m_type == 4">{m_value.boolean}</DisplayString>
     <!-- Integer -->
